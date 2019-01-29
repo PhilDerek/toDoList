@@ -23,10 +23,18 @@ body {
     padding-top: 10vh;
 }
 
+.mainHeadline {
+    font-size: 3rem;
+    color: darkorange;
+    margin-bottom: 3%;
+    letter-spacing: 4px;
+}
+
 .title {
     @include centerColumnFlex();
     background-color: rgb(7, 166, 206);
     color: #FFF;
+    font-size: 1.6rem;
     @include boxForm(2%, 15px, 3px 3px 4px rgb(102, 101, 101));
     margin-bottom: 10vh;
     transform: scale(0);
@@ -37,7 +45,7 @@ body {
 }
 
 .listBox {
-    background-color: #AAA;
+    background-image: url("/images/woodenBackground.png");
     flex-basis: 50vh;
     min-width: 60vw;
     @include centerColumnFlex();
@@ -49,25 +57,7 @@ body {
     &.listBoxScale {
         transform: scale(1);
     }
-    .baseTask {
-        background-color: #FFF;
-        @include centerColumnFlex();
-        @include boxForm(3%, 15px, 3px 3px 3px);
-        position: relative;
-        top: 0;
-        left: 0;
-        .taskTitle {
-            text-transform: uppercase;
-        }
-        .deleteTask {
-            position: absolute;
-            right: 2%;
-            top: 2%;
-            cursor: pointer;
-            font-size: 25px;
-        }
-    }
-    div.addedNewListTask {
+    .listBoxItem {
         background-color: #FFF;
         @include centerColumnFlex();
         @include boxForm(3%, 15px, 3px 3px 3px);
@@ -77,8 +67,23 @@ body {
         width: 100%;
         margin: 30px auto;
         input {
-            font-size: 30px;
+            font-size: 25px;
             margin: 10px 0;
+        }
+        .btnAccept {
+            background-color: rgb(163, 106, 104);
+            border: none;
+            padding: 2%;
+            font-size: 20px;
+            border-radius: 15px;
+            color: #CCC;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: .3s;
+            &:hover {
+                color: #FFF;
+                border-radius: 5px;
+            }
         }
         .taskTitle {
             text-transform: uppercase;
@@ -89,8 +94,12 @@ body {
             top: 2%;
             cursor: pointer;
             font-size: 25px;
+            &:hover {
+                color: #CCC;
+            }
         }
     }
+    
     .newTask {
         width: 100%;
         min-height: 10vh;
@@ -100,16 +109,25 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 30px auto;
         order: 1;
         .addNew {
             width: 50px;
             height: 50px;
             background-color: #666;
-            @include boxForm(3%, 50%, 0);
+            @include boxForm(0, 50%, 0);
             position: relative;
             top: 0;
             left: 0;
             cursor: pointer;
+            &:hover {
+                background-color: #1A1;
+                box-shadow: 3px 3px 3px black;
+            }
+            &:active {
+                transform: translateY(3px) scale(.9);
+                box-shadow: none;
+            }
             .plusLine {
                 position: absolute;
                 top: 50%;

@@ -11,12 +11,19 @@ body {
   min-height: 100vh;
   padding-top: 10vh; }
 
+.mainHeadline {
+  font-size: 3rem;
+  color: darkorange;
+  margin-bottom: 3%;
+  letter-spacing: 4px; }
+
 .title {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #07a6ce;
   color: #FFF;
+  font-size: 1.6rem;
   padding: 2%;
   border-radius: 15px;
   box-shadow: 3px 3px 4px #666565;
@@ -27,7 +34,7 @@ body {
     transform: scale(1); }
 
 .listBox {
-  background-color: #AAA;
+  background-image: url("/images/woodenBackground.png");
   flex-basis: 50vh;
   min-width: 60vw;
   display: flex;
@@ -42,26 +49,7 @@ body {
   transition: 1s .5s; }
   .listBox.listBoxScale {
     transform: scale(1); }
-  .listBox .baseTask {
-    background-color: #FFF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3%;
-    border-radius: 15px;
-    box-shadow: 3px 3px 3px;
-    position: relative;
-    top: 0;
-    left: 0; }
-    .listBox .baseTask .taskTitle {
-      text-transform: uppercase; }
-    .listBox .baseTask .deleteTask {
-      position: absolute;
-      right: 2%;
-      top: 2%;
-      cursor: pointer;
-      font-size: 25px; }
-  .listBox div.addedNewListTask {
+  .listBox .listBoxItem {
     background-color: #FFF;
     display: flex;
     flex-direction: column;
@@ -74,17 +62,32 @@ body {
     left: 0;
     width: 100%;
     margin: 30px auto; }
-    .listBox div.addedNewListTask input {
-      font-size: 30px;
+    .listBox .listBoxItem input {
+      font-size: 25px;
       margin: 10px 0; }
-    .listBox div.addedNewListTask .taskTitle {
+    .listBox .listBoxItem .btnAccept {
+      background-color: #a36a68;
+      border: none;
+      padding: 2%;
+      font-size: 20px;
+      border-radius: 15px;
+      color: #CCC;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: .3s; }
+      .listBox .listBoxItem .btnAccept:hover {
+        color: #FFF;
+        border-radius: 5px; }
+    .listBox .listBoxItem .taskTitle {
       text-transform: uppercase; }
-    .listBox div.addedNewListTask .deleteTask {
+    .listBox .listBoxItem .deleteTask {
       position: absolute;
       right: 2%;
       top: 2%;
       cursor: pointer;
       font-size: 25px; }
+      .listBox .listBoxItem .deleteTask:hover {
+        color: #CCC; }
   .listBox .newTask {
     width: 100%;
     min-height: 10vh;
@@ -96,18 +99,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 30px auto;
     order: 1; }
     .listBox .newTask .addNew {
       width: 50px;
       height: 50px;
       background-color: #666;
-      padding: 3%;
+      padding: 0;
       border-radius: 50%;
       box-shadow: 0;
       position: relative;
       top: 0;
       left: 0;
       cursor: pointer; }
+      .listBox .newTask .addNew:hover {
+        background-color: #1A1;
+        box-shadow: 3px 3px 3px black; }
+      .listBox .newTask .addNew:active {
+        transform: translateY(3px) scale(0.9);
+        box-shadow: none; }
       .listBox .newTask .addNew .plusLine {
         position: absolute;
         top: 50%;

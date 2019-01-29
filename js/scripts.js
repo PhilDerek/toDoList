@@ -1,80 +1,78 @@
-function closeListItem () {
-    var allCloseSpans = document.querySelectorAll(".deleteTask");
-    for (var i = 0; i < allCloseSpans.length; i++) {
-        allCloseSpans[i].addEventListener("click", function () {
-            this.parentElement.style.display = "none";
-        })
-    }
-}
 
-
-function newElemCreateMainFunc () {
+function listItemCreate () {
     var newElem = document.createElement("div");
-    newElem.classList.add("addedNewListTask");
+    newElem.classList.add("listBoxItem");
     listBox.appendChild(newElem);
-    var inputForH2;
-    var inputForP;
-    var btnAccept;
-    function inputStage () {
-        inputForH2 = document.createElement("input");
-        inputForH2.setAttribute("type", "text");
-        inputForH2.setAttribute("placeholder", "Tytuł");
-        newElem.appendChild(inputForH2);
+    var titleInput = document.createElement("input");
+    titleInput.setAttribute("type", "text");
+    titleInput.setAttribute("placeholder", "Tytuł");
+    titleInput.classList.add("titleInput");
+    newElem.appendChild(titleInput);
 
-        inputForP = document.createElement("input");
-        inputForP.setAttribute("type", "text");
-        inputForP.setAttribute("placeholder", "Opis");
-        newElem.appendChild(inputForP);
+    var descriptionInput = document.createElement("input");
+    descriptionInput.setAttribute("type", "text");
+    descriptionInput.setAttribute("placeholder", "Opis");
+    descriptionInput.classList.add("descriptionInput");
+    newElem.appendChild(descriptionInput);
 
-        btnAccept = document.createElement("button");
-        btnAccept.textContent = "Potwierdź";
-        btnAccept.setAttribute("id", "btnAccept");
-        newElem.appendChild(btnAccept);
-    }
-    inputStage();
-
-    function FinalListItemAndClose () {
-        btnAccept.addEventListener("click", function () {
-            var input1Value = inputForH2.value;
-            var input2Value = inputForP.value;
-
-            var h2 = document.createElement("h2");
-            var paragr = document.createElement("p");
-            var closeSpan = document.createElement("span");
-
-            h2.textContent = input1Value;
-            paragr.textContent = input2Value;
-            closeSpan.textContent = "x";
-            h2.classList.add("taskTitle");
-            closeSpan.classList.add("deleteTask");
-
-            newElem.removeChild(inputForH2);
-            newElem.removeChild(inputForP);
-            newElem.removeChild(btnAccept);
-
-            newElem.appendChild(h2);
-            newElem.appendChild(paragr);
-            newElem.appendChild(closeSpan);
-            
-            closeListItem();
-        })
-    }
-    FinalListItemAndClose();
+    var btnAccept = document.createElement("button");
+    btnAccept.textContent = "Potwierdź";
+    btnAccept.setAttribute("class", "btnAccept");
+    newElem.appendChild(btnAccept);
 }
-
-
-var listBox = document.querySelector("[data-item]");
-
-var btnAction = document.querySelector(".addNew");
 
 window.addEventListener("load", function () {
     var pageTitle = document.querySelector(".title");
     pageTitle.classList.add("titleScale");
 
     listBox.classList.add("listBoxScale");
-})
+}, false)
 
-closeListItem();
+var listBox = document.querySelector("[data-item]");
 
-btnAction.addEventListener("click", newElemCreateMainFunc);
+var btnAction = document.querySelector(".addNew");
+
+listBox.addEventListener("click", function (e) {
+    if (e.target.className === "deleteTask") {
+        e.target.parentElement.style.display = "none";
+    }
+
+    if (e.target.className === "btnAccept" && e.target.parentElement.children[0].value !== "") {
+        var titleValue = e.target.parentElement.children[0].value;
+        var subscriptionValue = e.target.parentElement.children[1].value;
+
+        var h2 = document.createElement("h2");
+        var paragr = document.createElement("p");
+        var closeSpan = document.createElement("span");
+
+        h2.textContent = titleValue;
+        paragr.textContent = subscriptionValue;
+        closeSpan.textContent = "x";
+        h2.classList.add("taskTitle");
+        closeSpan.classList.add("deleteTask");
+
+        while (e.target.parentNode.childElementCount > 1 && e.target.parentNode.firstChild !== e.target) {
+            e.target.parentNode.firstChild.remove();
+        }
+
+        if (e.target.parentNode.childElementCount > 1 && e.target.parentNode.firstChild === e.target) {
+            e.target.parentNode.lastChild.remove();
+        }
+
+        e.target.parentElement.appendChild(h2);
+        e.target.parentElement.appendChild(paragr);
+        e.target.parentElement.appendChild(closeSpan);
+
+        e.target.remove();
+    } else if (e.target.className === "btnAccept" && e.target.parentElement.children[0].value === "" && e.target.parentNode.childElementCount < 4) {
+        var alertMessage = document.createElement("p");
+        alertMessage.textContent = "proszę podać przynajmniej tytuł";
+        alertMessage.style.color = "red";
+        e.target.parentElement.appendChild(alertMessage);
+    }
+    
+}, false)
+
+
+btnAction.addEventListener("click", listItemCreate, false);
 
