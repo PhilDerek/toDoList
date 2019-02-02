@@ -64,9 +64,12 @@ body {
     margin: 30px auto; }
     .listBox .listBoxItem input {
       font-size: 25px;
-      margin: 10px 0; }
+      margin: 10px 0;
+      border-radius: 10px; }
+      .listBox .listBoxItem input:focus {
+        box-shadow: 0 0 3px 2px #3fb0dd; }
     .listBox .listBoxItem .btnAccept {
-      background-color: #a36a68;
+      background-color: #914340;
       border: none;
       padding: 2%;
       font-size: 20px;
@@ -78,6 +81,8 @@ body {
       .listBox .listBoxItem .btnAccept:hover {
         color: #FFF;
         border-radius: 5px; }
+      .listBox .listBoxItem .btnAccept:active {
+        border: none; }
     .listBox .listBoxItem .taskTitle {
       text-transform: uppercase; }
     .listBox .listBoxItem .deleteTask {
@@ -95,7 +100,7 @@ body {
     border: 3px #000 dashed;
     padding: 3%;
     border-radius: 10px;
-    box-shadow: 0;
+    box-shadow: none;
     display: flex;
     justify-content: center;
     align-items: center;

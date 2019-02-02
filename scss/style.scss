@@ -69,9 +69,14 @@ body {
         input {
             font-size: 25px;
             margin: 10px 0;
+            border-radius: 10px;
+            &:focus {
+                box-shadow: 0 0 3px 2px rgb(63, 176, 221);
+            }
+            
         }
         .btnAccept {
-            background-color: rgb(163, 106, 104);
+            background-color: rgb(145, 67, 64);
             border: none;
             padding: 2%;
             font-size: 20px;
@@ -83,6 +88,9 @@ body {
             &:hover {
                 color: #FFF;
                 border-radius: 5px;
+            }
+            &:active {
+                border: none;
             }
         }
         .taskTitle {
@@ -105,7 +113,7 @@ body {
         min-height: 10vh;
         background-color: #FFF;
         border: 3px #000 dashed;
-        @include boxForm(3%, 10px, 0);
+        @include boxForm(3%, 10px, none);
         display: flex;
         justify-content: center;
         align-items: center;
